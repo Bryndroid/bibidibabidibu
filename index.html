@@ -1,0 +1,56 @@
+index.html
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flor Amarilla</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f0f0f0;
+        }
+        canvas {
+            border: 1px solid black;
+        }
+    </style>
+</head>
+<body>
+    <canvas id="flowerCanvas" width="800" height="600"></canvas>
+    <script>
+        function drawFlower() {
+            const canvas = document.getElementById('flowerCanvas');
+            const ctx = canvas.getContext('2d');
+            const centerX = canvas.width / 2;
+            const centerY = canvas.height / 2;
+            const petalCount = 8;
+            const petalRadius = 100;
+
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            // Dibuja los pétalos
+            ctx.fillStyle = 'yellow';
+            for (let i = 0; i < petalCount; i++) {
+                const angle = i * (Math.PI * 2) / petalCount;
+                const x = centerX + Math.cos(angle) * petalRadius;
+                const y = centerY + Math.sin(angle) * petalRadius;
+                ctx.beginPath();
+                ctx.ellipse(x, y, 50, 100, angle, 0, Math.PI * 2);
+                ctx.fill();
+            }
+
+            // Dibuja el centro
+            ctx.fillStyle = 'orange';
+            ctx.beginPath();
+            ctx.arc(centerX, centerY, 50, 0, Math.PI * 2);
+            ctx.fill();
+        }
+
+        drawFlower();
+    </script>
+</body>
+</html>

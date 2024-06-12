@@ -1,10 +1,10 @@
-UWU
 <!DOCTYPE html>
+
 <html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>elpepe</title>
+    <title>ete sech</title>
     <style>
         body {
             display: flex;
@@ -20,37 +20,45 @@ UWU
     </style>
 </head>
 <body>
-    <canvas id="flowerCanvas" width="800" height="600"></canvas>
+    <canvas id="giftCanvas" width="800" height="600"></canvas>
     <script>
-        function drawFlower() {
-            const canvas = document.getElementById('flowerCanvas');
+        function drawGiftBox() {
+            const canvas = document.getElementById('giftCanvas');
             const ctx = canvas.getContext('2d');
             const centerX = canvas.width / 2;
             const centerY = canvas.height / 2;
-            const petalCount = 8;
-            const petalRadius = 100;
+            const boxWidth = 200;
+            const boxHeight = 200;
 
             ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-            // Dibuja los pétalos
-            ctx.fillStyle = 'yellow';
-            for (let i = 0; i < petalCount; i++) {
-                const angle = i * (Math.PI * 2) / petalCount;
-                const x = centerX + Math.cos(angle) * petalRadius;
-                const y = centerY + Math.sin(angle) * petalRadius;
-                ctx.beginPath();
-                ctx.ellipse(x, y, 50, 100, angle, 0, Math.PI * 2);
-                ctx.fill();
-            }
+            // Dibuja la caja
+            ctx.fillStyle = '#FF0000'; // Color rojo para la caja
+            ctx.fillRect(centerX - boxWidth / 2, centerY - boxHeight / 2, boxWidth, boxHeight);
 
-            // Dibuja el centro
-            ctx.fillStyle = 'orange';
+            // Dibuja la tapa de la caja
+            ctx.fillStyle = '#FF0000'; // Color rojo para la tapa
+            ctx.fillRect(centerX - boxWidth / 2, centerY - boxHeight / 2 - 20, boxWidth, 20);
+
+            // Dibuja el lazo horizontal
+            ctx.fillStyle = '#FFD700'; // Color dorado para el lazo
+            ctx.fillRect(centerX - boxWidth / 2, centerY - 10, boxWidth, 20);
+
+            // Dibuja el lazo vertical
+            ctx.fillRect(centerX - 10, centerY - boxHeight / 2, 20, boxHeight);
+
+            // Dibuja el lazo superior (cruz)
             ctx.beginPath();
-            ctx.arc(centerX, centerY, 50, 0, Math.PI * 2);
-            ctx.fill();
+            ctx.moveTo(centerX - 20, centerY - boxHeight / 2 - 20);
+            ctx.lineTo(centerX + 20, centerY - boxHeight / 2 + 20);
+            ctx.moveTo(centerX + 20, centerY - boxHeight / 2 - 20);
+            ctx.lineTo(centerX - 20, centerY - boxHeight / 2 + 20);
+            ctx.strokeStyle = '#FFD700';
+            ctx.lineWidth = 5;
+            ctx.stroke();
         }
 
-        drawFlower();
+        drawGiftBox();
     </script>
 </body>
 </html>
